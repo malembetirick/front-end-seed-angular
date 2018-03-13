@@ -1,6 +1,8 @@
 "use strict";
 const angular = require("angular");
 require("@uirouter/angularjs");
+require('angular-translate');
+require('angular-translate-loader-partial');
 
 require("./components/shared/shared-components.module");
 require("./components/user/user.module");
@@ -8,11 +10,11 @@ require("./components/user/user.module");
 const global_config_factory = require("./global-config.factory");
 const app_config = require("./app.config");
 
-angular.module("test", ["ui.router", "SharedComponentsModule", "UserModule"])
+angular.module("test", ["ui.router", "pascalprecht.translate", "SharedComponentsModule", "UserModule"])
     .factory("GlobalConfigFactory", global_config_factory)
     .config(app_config);
 
-if ('serviceWorker' in navigator) {
+/*if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('sw.js').then(function (reg) {
             reg.update();
@@ -38,4 +40,4 @@ if ('serviceWorker' in navigator) {
             console.error('Error during service worker registration:', e);
         });
     });
-}
+}*/
