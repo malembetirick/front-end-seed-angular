@@ -1,17 +1,17 @@
-const browserify = require('browserify');
-const gulp = require("gulp");
-const buffer = require('vinyl-buffer');
-const babelify = require('babelify');
-const source = require('vinyl-source-stream');
-const log = require("fancy-log");
-const minify = require("gulp-babel-minify");
-const strip = require('gulp-strip-comments');
+import browserify from 'browserify';
+import gulp from "gulp";
+import buffer from 'vinyl-buffer';
+import babelify from 'babelify';
+import source from 'vinyl-source-stream';
+import log from "fancy-log";
+import minify from "gulp-babel-minify";
+import strip from 'gulp-strip-comments';
 
-let js_task = (config) => {
-    return function () {
-        let vendors = config.vendors || [];
-        let connect = config.connect;
-        let stream = browserify({
+module.exports = (config) => {
+    return function js () {
+        const vendors = config.vendors || [];
+        const connect = config.connect;
+        const stream = browserify({
             entries: config.src,
             extensions: ['.js'],
             debug: true
@@ -38,5 +38,3 @@ let js_task = (config) => {
         return stream;
     };
 };
-
-module.exports = js_task;

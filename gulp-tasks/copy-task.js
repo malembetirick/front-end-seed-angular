@@ -1,18 +1,23 @@
 "use strict";
-const gulp = require("gulp");
-const plumber = require("gulp-plumber");
+import gulp from "gulp";
+import plumber from "gulp-plumber";
 
-let copy_task = (config) => {
-    return () => {
-        let connect = config.connect;
-        let stream = gulp.src(config.src)
+export default (config) => {
+    const result_function = function copy() {
+        const connect = config.connect;
+        const stream = gulp.src(config.src)
             .pipe(plumber())
             .pipe(gulp.dest(config.dest));
-        if(connect){
+        if (connect) {
             stream.pipe(connect.reload());
         }
         return stream;
-    }
-};
+    };
 
-module.exports = copy_task;
+    // Change the function name in gulp logs if provided as option
+    if(config.task_name){
+        Object.defineProperty(result_function, "name", { value: config.task_name });
+    }
+
+    return result_function;
+};

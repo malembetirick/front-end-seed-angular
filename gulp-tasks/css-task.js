@@ -1,13 +1,13 @@
 "use strict";
-const gulp = require("gulp");
-const sass = require("gulp-sass");
-const concat = require("gulp-concat");
-const plumber = require("gulp-plumber");
+import gulp from "gulp";
+import sass from "gulp-sass";
+import concat from "gulp-concat";
+import plumber from "gulp-plumber";
 
-let css_task = (config) => {
-    return () => {
-        let connect = config.connect;
-        let stream = gulp.src(config.src)
+export default (config) => {
+    return function css() {
+        const connect = config.connect;
+        const stream = gulp.src(config.src)
             .pipe(plumber())
             .pipe(sass())
             .pipe(concat('style.min.css'))
@@ -18,5 +18,3 @@ let css_task = (config) => {
         return stream;
     };
 };
-
-module.exports = css_task;

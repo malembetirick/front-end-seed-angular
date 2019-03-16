@@ -1,13 +1,12 @@
 "use strict";
+import gulp from "gulp";
+import html_min from "gulp-htmlmin";
+import plumber from "gulp-plumber";
 
-const gulp = require("gulp");
-const html_min = require('gulp-htmlmin');
-const plumber = require("gulp-plumber");
-
-let html_task = (config) => {
-    return () => {
-        let connect = config.connect;
-        let stream = gulp.src(config.src)
+export default (config) => {
+    return function html ()  {
+        const connect = config.connect;
+        const stream = gulp.src(config.src)
             .pipe(plumber())
             .pipe(html_min({collapseWhitespace: true}))
             .pipe(gulp.dest(config.dest));
@@ -17,5 +16,3 @@ let html_task = (config) => {
         return stream;
     }
 };
-
-module.exports = html_task;

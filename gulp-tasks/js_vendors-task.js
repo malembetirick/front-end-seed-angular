@@ -1,22 +1,21 @@
-const browserify = require('browserify');
-const gulp = require("gulp");
-const buffer = require('vinyl-buffer');
-const source = require('vinyl-source-stream');
-const minify = require("gulp-babel-minify");
-const strip = require('gulp-strip-comments');
-const plumber = require("gulp-plumber");
+import browserify from 'browserify';
+import gulp from "gulp";
+import buffer from 'vinyl-buffer';
+import source from 'vinyl-source-stream';
+import strip from 'gulp-strip-comments';
+import plumber from "gulp-plumber";
 
-let js_vendor_task = (config) => {
-    return function () {
-        let vendors = config.vendors || [];
-        let connect = config.connect;
+module.exports = (config) => {
+    return function js_vendor() {
+        const vendors = config.vendors || [];
+        const connect = config.connect;
         const b = browserify({
             debug: true
         });
         vendors.forEach(lib => {
             b.require(lib);
         });
-        let stream = b.bundle()
+        const stream = b.bundle()
             .pipe(plumber())
             .pipe(source('vendor.min.js'))
             .pipe(buffer())
@@ -29,5 +28,3 @@ let js_vendor_task = (config) => {
         return stream;
     };
 };
-
-module.exports = js_vendor_task;

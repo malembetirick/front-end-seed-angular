@@ -1,10 +1,10 @@
 "use strict";
-const swPrecache = require('sw-precache');
+import swPrecache from 'sw-precache';
 
-let generate_sw_task = (config) => {
-    return function (done) {
-        let rootDir = config.dest;
-        let connect = config.connect;
+export default (config) => {
+    return function generate_sw_task (done) {
+        const rootDir = config.dest;
+        const connect = config.connect;
         swPrecache.write(`${rootDir}/sw.js`, {
             staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,woff2,otf}'],
             stripPrefix: rootDir,
@@ -17,6 +17,4 @@ let generate_sw_task = (config) => {
         });
     };
 };
-
-module.exports = generate_sw_task;
 
