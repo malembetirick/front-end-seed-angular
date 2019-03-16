@@ -3,10 +3,9 @@ const gulp = require("gulp");
 const buffer = require('vinyl-buffer');
 const babelify = require('babelify');
 const source = require('vinyl-source-stream');
-const gutil = require("gulp-util");
+const log = require("fancy-log");
 const minify = require("gulp-babel-minify");
 const strip = require('gulp-strip-comments');
-const plumber = require("gulp-plumber");
 
 let js_task = (config) => {
     return function () {
@@ -21,13 +20,13 @@ let js_task = (config) => {
             .transform(babelify)
             .bundle()
             .on('error', function (err) {
-                gutil.log(gutil.colors.red('[Error]'), err.toString());
+                log.error(err.toString());
                 this.emit('end');
             })
             .pipe(source('app.min.js'))
             .pipe(buffer())
             .on('error', function (err) {
-                gutil.log(gutil.colors.red('[Error]'), err.toString());
+                log.error(err.toString());
                 this.emit('end');
             })
             .pipe(strip())

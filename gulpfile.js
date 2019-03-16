@@ -13,7 +13,6 @@ const lib_path = "node_modules";
 const dest_folder = './dist/';
 
 const css_deps = [
-    lib_path + "/bootstrap/dist/css/bootstrap.min.css",
     lib_path + "/font-awesome/css/font-awesome.min.css"
 ];
 const js_deps = [ "angular", "@uirouter/angularjs"];
