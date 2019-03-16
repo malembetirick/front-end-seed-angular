@@ -39,7 +39,6 @@
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.1",
     "gulp-strip-comments": "^2.5.2",
-    "gulp-uglify": "^3.0.2",
     "sw-precache": "^5.2.1",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
