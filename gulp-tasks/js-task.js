@@ -15,7 +15,7 @@ module.exports = (config) => {
             entries: config.src,
             extensions: ['.js'],
             debug: true
-        })
+            })
             .external(vendors)
             .transform(babelify)
             .bundle()

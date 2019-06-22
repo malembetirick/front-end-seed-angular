@@ -6,11 +6,13 @@ require('angular-translate-loader-partial');
 
 require("./components/shared/shared-components.module");
 require("./components/user/user.module");
+require("./components/reactjs/mycomponent.module")
+require("./components/reactjs/tictactoe/tictactoe.module")
 
 const global_config_factory = require("./global-config.factory");
 const app_config = require("./app.config");
 
-angular.module("test", ["ui.router", "pascalprecht.translate", "SharedComponentsModule", "UserModule"])
+angular.module("test", ["ui.router", "pascalprecht.translate", "SharedComponentsModule", "UserModule", "reactEmbed", "tictactoeGame"])
     .factory("GlobalConfigFactory", global_config_factory)
     .config(app_config);
 
